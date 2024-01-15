@@ -57,9 +57,9 @@
             <div class="con left">
               <img class="element-show icon element-animation" src="../assets/img/champagne-glass.svg"
                    alt="Сбор гостей">
-              <div class="element-show content element-animation left-animate ">
-                <p class="text-end">16:00</p>
-                <p class="text-end">Сбор гостей</p>
+              <div class="element-show content element-animation left-animate" style="width: max-content;">
+                <p>16:00</p>
+                <p>Сбор гостей</p>
               </div>
             </div>
             <div class="con right">
@@ -483,6 +483,7 @@ h2 {
   padding: 30px 500px 30px 0;
   position: relative;
   text-align: center;
+  width: fit-content;
 }
 
 .con.right .content {
@@ -565,6 +566,7 @@ h3 {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  margin-right: 5px;
 }
 
 .circle.blue {

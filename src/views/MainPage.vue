@@ -37,18 +37,21 @@
             <p class="mb-2">Вы можете отметить тех, кому уже послали ссылку на Ваше приглашение, просто кликнув по соответствующему полю 'Приглашен?'.</p>
             <p class="">Отправляйте напоминания тем, кто не дал четкого ответа, или всем гостям для актуализации
               списка.</p>
-<!--            <p>Когда гость заполнит форму на сайте, его строка поменяет цвет следующим образом:</p>-->
           </v-card-text>
-<!--          <v-card variant="tonal" class="d-flex w-50 px-3 py-2 mx-auto " color="blue-grey" elevation="2">-->
-<!--            <v-icon icon="mdi-circle" color="red"/>-->
-<!--            <span> - не придет</span>-->
-<!--            <v-spacer/>-->
-<!--            <v-icon icon="mdi-circle" color="yellow"/>-->
-<!--            <span> - не уверен</span>-->
-<!--            <v-spacer/>-->
-<!--            <v-icon icon="mdi-circle" color="green"/>-->
-<!--            <span> - придет</span>-->
-<!--          </v-card>-->
+          <v-expansion-panels class="w-75 px-3 py-2 mx-auto">
+            <v-expansion-panel variant="tonal" elevation="2">
+              <v-expansion-panel-title color="blue-grey-lighten-5">Всего гостей: {{guests.length}}</v-expansion-panel-title>
+              <v-expansion-panel-text>
+                <div class="d-flex justify-space-evenly">
+                <span class="text-body-1">Придет: {{guests.filter(guest => guest.attend === attendValues.YES).length }}</span>
+                <span class="text-body-1">Не придет: {{guests.filter(guest => guest.attend === attendValues.NO).length }}</span>
+                <span class="text-body-1">Не знают: {{guests.filter(guest => guest.attend === attendValues.NOT_SURE).length }}</span>
+                <span class="text-body-1">Не дали ответ: {{guests.filter(guest => guest.attend === attendValues.EMPTY).length }}</span>
+                </div>
+              </v-expansion-panel-text>
+            </v-expansion-panel>
+          </v-expansion-panels>
+
         </v-card>
         <v-card variant="text" class="pa-5 mx-2 d-flex justify-space-evenly">
           <v-btn
@@ -151,6 +154,7 @@ import {storeToRefs} from "pinia";
 import {useAuth} from "@/stores/useAuth.ts";
 import {useGuests} from "@/stores/useGuests.ts";
 import GuestDialog from "@/components/GuestDialog.vue";
+import {attendValues} from "@/interfaces/guest.ts"
 
 const isExpandNav = ref(false);
 const curTab = ref('');
